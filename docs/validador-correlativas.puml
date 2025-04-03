@@ -1,0 +1,28 @@
+@startuml
+
+class Alumno {
+    - nombre : String
+    - apellido : String
+    - legajo : String
+    - materiasAprobadas : List<Materia>
+
+}
+
+class Materia {
+    - nombre : String
+    - correlativas : List<Materia>
+}
+
+class Inscripcion {
+    - alumno : Alumno
+    - materiasAInscribirse : List<Materia>
+    + aprobada() : Boolean
+}
+
+Alumno "1" o-- "*" Materia : materiasAprobadas
+Inscripcion "1" --> "1" Alumno : alumno
+Inscripcion "1" --> "*" Materia : materiasAInscribirse
+Materia "1" --> "*" Materia : correlativas
+
+
+@enduml
